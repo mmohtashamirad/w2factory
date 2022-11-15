@@ -24,16 +24,16 @@
 #define MOD_INFO KERN_INFO "mtd-rw: "
 #define MOD_ERR KERN_ERR "mtd-rw: "
 
-static bool i_want_a_brick = false;
-module_param(i_want_a_brick, bool, S_IRUGO);
-MODULE_PARM_DESC(i_want_a_brick, "Make all partitions writeable");
+static bool i_take_the_risk = false;
+module_param(i_take_the_risk, bool, S_IRUGO);
+MODULE_PARM_DESC(i_take_the_risk, "Make all partitions writeable");
 
 int w2factory_init(void)
 {
     struct mtd_info *mtd;
-    if (!i_want_a_brick)
+    if (!i_take_the_risk)
     {
-        printk(MOD_ERR "must specify i_want_a_brick=1 to continue\n");
+        printk(MOD_ERR "must specify i_take_the_risk=1 to continue\n");
         return -EINVAL;
     }
 
